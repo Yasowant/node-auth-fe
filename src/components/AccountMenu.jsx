@@ -14,11 +14,18 @@ import { useAuth } from "../hooks/useAuth";
 import { ROLE_LABELS, initialsOf, profileScore } from "../utils/adminUsers";
 
 /** Items without a page yet are shown but not linked -- a menu entry that
- *  goes nowhere is worse than one that says it is not ready. */
-const LINKS = [
+ *  goes nowhere is worse than one that says it is not ready. Recruiters get
+ *  their console instead of the candidate-only links. */
+const CANDIDATE_LINKS = [
   { to: "/profile", label: "View and update profile", icon: <UserIcon /> },
   { label: "Saved jobs", icon: <BookmarkIcon />, soon: true },
   { to: "/applications", label: "My applications", icon: <BriefcaseIcon /> },
+  { label: "Change password", icon: <LockIcon />, soon: true },
+];
+
+const RECRUITER_LINKS = [
+  { to: "/profile", label: "View and update profile", icon: <UserIcon /> },
+  { to: "/recruiter", label: "Recruiter console", icon: <BriefcaseIcon /> },
   { label: "Change password", icon: <LockIcon />, soon: true },
 ];
 
@@ -50,6 +57,7 @@ const AccountMenu = () => {
   };
 
   const score = profileScore(user);
+  const links = user.role === "RECRUITER" ? RECRUITER_LINKS : CANDIDATE_LINKS;
 
   return (
     <>
@@ -132,7 +140,7 @@ const AccountMenu = () => {
               </div>
 
               <nav className="account-links" aria-label="Account">
-                {LINKS.map((item) =>
+                {links.map((item) =>
                   item.soon ? (
                     <span className="account-link is-soon" key={item.label}>
                       {item.icon}

@@ -13,8 +13,10 @@ const WORK_STATUS_LABELS = {
 const Dashboard = () => {
   const { user } = useAuth();
 
-  // Admins have their own console; the board has nothing for them yet.
+  // Admins and recruiters have their own consoles; the candidate board has
+  // nothing for them.
   if (user.role === "ADMIN") return <Navigate to="/admin" replace />;
+  if (user.role === "RECRUITER") return <Navigate to="/recruiter" replace />;
 
   return (
     <>
