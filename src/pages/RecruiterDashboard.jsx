@@ -4,6 +4,7 @@ import AccountMenu from "../components/AccountMenu";
 import AppHeader from "../components/AppHeader";
 import { useCompany } from "../hooks/useCompany";
 import { useMyJobs } from "../hooks/useMyJobs";
+import NotificationBell from "../components/NotificationBell";
 
 const STATUS_LABELS = {
   DRAFT: "Draft",
@@ -33,6 +34,7 @@ const RecruiterDashboard = () => {
     return (
       <>
         <AppHeader>
+          <NotificationBell />
           <AccountMenu />
         </AppHeader>
         <main className="page">

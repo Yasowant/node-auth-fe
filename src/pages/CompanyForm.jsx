@@ -8,6 +8,7 @@ import TagInput from "../components/profile/TagInput";
 import { createCompany, updateCompany } from "../api/company";
 import { useCompany } from "../hooks/useCompany";
 import { useFormSubmit } from "../hooks/useFormSubmit";
+import NotificationBell from "../components/NotificationBell";
 
 // Mirrors the size enum on the Company model.
 const SIZE_OPTIONS = [
@@ -109,6 +110,7 @@ const CompanyForm = () => {
     return (
       <>
         <AppHeader>
+          <NotificationBell />
           <AccountMenu />
         </AppHeader>
         <main className="page">

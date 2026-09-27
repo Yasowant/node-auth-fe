@@ -10,6 +10,7 @@ import { PlusIcon, TrashIcon } from "../components/icons";
 import { createJob } from "../api/jobs";
 import { useCompany } from "../hooks/useCompany";
 import { useFormSubmit } from "../hooks/useFormSubmit";
+import NotificationBell from "../components/NotificationBell";
 
 // Mirrors the workMode/employmentType enums on the Job model.
 const WORK_MODE_OPTIONS = [
@@ -165,6 +166,7 @@ const JobForm = () => {
     return (
       <>
         <AppHeader>
+          <NotificationBell/>
           <AccountMenu />
         </AppHeader>
         <main className="page">
