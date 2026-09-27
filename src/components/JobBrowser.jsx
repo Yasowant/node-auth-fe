@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import FilterRail from "./landing/FilterRail";
 import JobCard from "./JobCard";
 import JobSearchBar from "./JobSearchBar";
 import { SORTS } from "../data/jobs";
 import { useJobSearch } from "../hooks/useJobSearch";
+import { getMyApplications } from "../api/applications";
 import ApplyModal from "./ApplyModal";
 
 /** The signed-in job board: search, facets, sort and saved roles. */
@@ -13,6 +14,27 @@ const JobBrowser = () => {
   const [saved, setSaved] = useState([]);
   const [appliedIds, setAppliedIds] = useState(new Set());
   const [applyTarget, setApplyTarget] = useState(null);
+
+  // Seed from the user's real applications on mount -- otherwise appliedIds
+  // starts empty on every page load and a job applied to in an earlier
+  // session shows "Apply" again instead of "Applied".
+  useEffect(() => {
+    const controller = new AbortController();
+
+    getMyApplications({ limit: 100, signal: controller.signal })
+      .then((data) => {
+        const ids = (Array.isArray(data?.applications) ? data.applications : [])
+          .map((application) => application.job?._id)
+          .filter(Boolean);
+        setAppliedIds(new Set(ids));
+      })
+      .catch(() => {
+        // Non-critical -- worst case the button doesn't know yet, and a
+        // repeat attempt is still caught by the backend's 409.
+      });
+
+    return () => controller.abort();
+  }, []);
 
   const toggleSave = (id) =>
     setSaved((current) =>
