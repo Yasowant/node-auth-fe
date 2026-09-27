@@ -34,9 +34,10 @@ const RECRUITER_LINKS = [
  * place of the old static avatar and log-out button.
  */
 const AccountMenu = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, becomeRecruiter } = useAuth();
   const [open, setOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
+  const [becomingRecruiter, setBecomingRecruiter] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,6 +55,17 @@ const AccountMenu = () => {
     setSigningOut(true);
     await logout();
     navigate("/login", { replace: true });
+  };
+
+  const handleBecomeRecruiter = async () => {
+    setBecomingRecruiter(true);
+    try {
+      await becomeRecruiter();
+      setOpen(false);
+      navigate("/recruiter/company");
+    } catch {
+      setBecomingRecruiter(false);
+    }
   };
 
   const score = profileScore(user);
@@ -138,6 +150,22 @@ const AccountMenu = () => {
                     : "A fuller profile is what recruiters actually read."}
                 </p>
               </div>
+
+              {user.role === "USER" ? (
+                <button
+                  type="button"
+                  className="account-link"
+                  onClick={handleBecomeRecruiter}
+                  disabled={becomingRecruiter}
+                >
+                  <BriefcaseIcon />
+                  <span>
+                    {becomingRecruiter
+                      ? "Setting up..."
+                      : "Become a recruiter"}
+                  </span>
+                </button>
+              ) : null}
 
               <nav className="account-links" aria-label="Account">
                 {links.map((item) =>

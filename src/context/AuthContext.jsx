@@ -120,6 +120,17 @@ export const AuthProvider = ({ children }) => {
       throw error;
     }
   }, []);
+
+  const becomeRecruiter = useCallback(async () => {
+    const { data } = await api.patch("/auth/become-recruiter");
+
+    // The endpoint only returns { id, name, email, role } -- merge onto the
+    // existing user instead of replacing it, so profile fields (workStatus,
+    // resume, skills...) already in context survive the role change.
+    setUser((current) => ({ ...current, ...data?.user }));
+
+    return data;
+  }, []);
   // ==========================================
   // ONLY getAllUsers uses React Query (admins only)
   // ==========================================
@@ -153,6 +164,7 @@ export const AuthProvider = ({ children }) => {
       register,
       logout,
       requestPasswordReset,
+      becomeRecruiter,
 
       // Users
       users,
@@ -168,6 +180,7 @@ export const AuthProvider = ({ children }) => {
       register,
       logout,
       requestPasswordReset,
+      becomeRecruiter,
       users,
       usersLoading,
       usersError,
