@@ -22,10 +22,8 @@ const JobBrowser = () => {
     );
 
   const handleApplySuccess = () => {
-    setAppliedIds((current) => {
-      new Set(current).add(applyTarget.id);
-      setApplyTarget(null);
-    });
+    setAppliedIds((current) => new Set(current).add(applyTarget.id));
+    setApplyTarget(null);
   };
 
   if (search.loading) {
