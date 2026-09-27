@@ -9,5 +9,18 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          if (saved === "light" || saved === "dark") {
+            document.documentElement.setAttribute("data-theme", saved);
+          }
+        } catch {
+          // localStorage can throw in some private/locked-down contexts --
+          // fine to just fall back to the OS preference below.
+        }
+      })();
+    </script>
   </body>
 </html>

@@ -18,6 +18,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useUserDirectory } from "../hooks/useUserDirectory";
 import { summarise } from "../utils/adminUsers";
 import NotificationBell from "../components/NotificationBell";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Admin = () => {
   const { user, users, usersLoading, usersError, refetchUsers } = useAuth();
@@ -33,6 +34,7 @@ const Admin = () => {
         <Link className="btn btn-ghost" to="/dashboard">
           Job board
         </Link>
+        <ThemeToggle/>
         <NotificationBell />
         <AccountMenu />
       </AppHeader>

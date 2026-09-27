@@ -21,6 +21,7 @@ import {
 import { useAuth } from "../hooks/useAuth";
 import { useProfileDraft } from "../hooks/useProfileDraft";
 import NotificationBell from "../components/NotificationBell";
+import ThemeToggle from "../components/ThemeToggle";
 
 const filled = (...values) => values.filter(Boolean).length;
 
@@ -106,6 +107,7 @@ const Profile = () => {
         <Link className="btn btn-ghost" to="/dashboard">
           Job board
         </Link>
+        <ThemeToggle />
         <NotificationBell />
         <AccountMenu />
       </AppHeader>

@@ -1,6 +1,7 @@
 import AccountMenu from "../components/AccountMenu";
 import AppHeader from "../components/AppHeader";
 import NotificationBell from "../components/NotificationBell";
+import ThemeToggle from "../components/ThemeToggle";
 import { useApplications } from "../hooks/useApplications";
 
 const STATUS_LABELS = {
@@ -48,6 +49,7 @@ const Applications = () => {
   return (
     <>
       <AppHeader>
+        <ThemeToggle/>
         <NotificationBell/>
         <AccountMenu />
       </AppHeader>

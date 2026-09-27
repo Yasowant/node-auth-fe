@@ -9,6 +9,7 @@ import { createCompany, updateCompany } from "../api/company";
 import { useCompany } from "../hooks/useCompany";
 import { useFormSubmit } from "../hooks/useFormSubmit";
 import NotificationBell from "../components/NotificationBell";
+import ThemeToggle from "../components/ThemeToggle";
 
 // Mirrors the size enum on the Company model.
 const SIZE_OPTIONS = [
@@ -110,6 +111,7 @@ const CompanyForm = () => {
     return (
       <>
         <AppHeader>
+          <ThemeToggle />
           <NotificationBell />
           <AccountMenu />
         </AppHeader>

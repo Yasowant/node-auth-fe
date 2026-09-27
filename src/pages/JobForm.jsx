@@ -11,6 +11,7 @@ import { createJob } from "../api/jobs";
 import { useCompany } from "../hooks/useCompany";
 import { useFormSubmit } from "../hooks/useFormSubmit";
 import NotificationBell from "../components/NotificationBell";
+import ThemeToggle from "../components/ThemeToggle";
 
 // Mirrors the workMode/employmentType enums on the Job model.
 const WORK_MODE_OPTIONS = [
@@ -166,6 +167,7 @@ const JobForm = () => {
     return (
       <>
         <AppHeader>
+          <ThemeToggle />
           <NotificationBell/>
           <AccountMenu />
         </AppHeader>

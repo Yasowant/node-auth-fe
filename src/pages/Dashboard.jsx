@@ -5,6 +5,7 @@ import AppHeader from "../components/AppHeader";
 import JobBrowser from "../components/JobBrowser";
 import { useAuth } from "../hooks/useAuth";
 import NotificationBell from "../components/NotificationBell";
+import ThemeToggle from "../components/ThemeToggle";
 
 const WORK_STATUS_LABELS = {
   FRESHER: "Fresher",
@@ -22,6 +23,7 @@ const Dashboard = () => {
   return (
     <>
       <AppHeader>
+        <ThemeToggle />
         <NotificationBell />
         <AccountMenu />
       </AppHeader>

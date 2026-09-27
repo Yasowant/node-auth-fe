@@ -15,6 +15,7 @@
   --line-soft: #f1f5f9;
   --surface: #ffffff;
   --bg: #f8fafc;
+  --nav-bg: rgba(255, 255, 255, 0.9);
 
   --danger: #b42318;
   --danger-bg: #fef3f2;
@@ -388,7 +389,7 @@ svg {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
@@ -2971,4 +2972,66 @@ button.account-link:hover svg {
 .pill-danger {
   background: var(--danger-bg);
   color: var(--danger);
+}
+
+/* =========================================================
+   Dark theme -- same token names, dark values. Follows the
+   OS preference by default; :root[data-theme] overrides it
+   explicitly once the toggle button has been used.
+   ========================================================= */
+
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand: #818cf8;
+    --brand-dark: #6366f1;
+    --brand-soft: #1e1b4b;
+    --brand-ring: rgba(129, 140, 248, 0.35);
+
+    --ink: #f1f5f9;
+    --ink-2: #cbd5e1;
+    --muted: #94a3b8;
+    --line: #334155;
+    --line-soft: #1e293b;
+    --surface: #1e293b;
+    --bg: #0f172a;
+    --nav-bg: rgba(15, 23, 42, 0.85);
+
+    --danger: #fda29b;
+    --danger-bg: #451a1a;
+    --success: #6ee7b7;
+    --success-bg: #052e21;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  --brand: #818cf8;
+  --brand-dark: #6366f1;
+  --brand-soft: #1e1b4b;
+  --brand-ring: rgba(129, 140, 248, 0.35);
+
+  --ink: #f1f5f9;
+  --ink-2: #cbd5e1;
+  --muted: #94a3b8;
+  --line: #334155;
+  --line-soft: #1e293b;
+  --surface: #1e293b;
+  --bg: #0f172a;
+  --nav-bg: rgba(15, 23, 42, 0.85);
+
+  --danger: #fda29b;
+  --danger-bg: #451a1a;
+  --success: #6ee7b7;
+  --success-bg: #052e21;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.5);
 }

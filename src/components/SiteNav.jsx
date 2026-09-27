@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import { CloseIcon, MenuIcon } from "./icons";
 import { useAuth } from "../hooks/useAuth";
 
@@ -45,7 +46,10 @@ const SiteNav = () => {
           ))}
         </nav>
 
-        <div className="nav-actions">{actions}</div>
+        <div className="nav-actions">
+          <ThemeToggle />
+          {actions}
+        </div>
 
         <button
           type="button"
@@ -71,7 +75,10 @@ const SiteNav = () => {
             ))}
           </nav>
 
-          <div className="mobile-actions">{actions}</div>
+          <div className="mobile-actions">
+            <ThemeToggle />
+            {actions}
+          </div>
         </div>
       ) : null}
     </header>
