@@ -10,6 +10,19 @@ import { SparkIcon } from "../components/icons";
 import { useAgentChat } from "../hooks/useAgentChat";
 import { useAuth } from "../hooks/useAuth";
 
+/** Renders **bold** as <strong> without dangerouslySetInnerHTML (no XSS risk).
+ *  Everything else stays plain text; line breaks come from white-space: pre-wrap. */
+const renderText = (text) =>
+  text
+    .split(/(\*\*[^*\n]+\*\*)/g)
+    .map((part, i) =>
+      part.startsWith("**") && part.endsWith("**") && part.length > 4 ? (
+        <strong key={i}>{part.slice(2, -2)}</strong>
+      ) : (
+        part
+      ),
+    );
+
 const SUGGESTIONS = [
   "Find remote Angular jobs for 2 years of experience",
   "Show full-time Node.js roles in Bengaluru",
@@ -18,7 +31,7 @@ const SUGGESTIONS = [
 ];
 
 /**
- * AI job assistant. The backend runs an agent loop (OpenAI tool calling) that
+ * AI job assistant. The backend runs an agent loop (Claude tool use) that
  * can search jobs, read job details and check the user's applications. It can
  * only *propose* applying; the user confirms through the normal ApplyModal,
  * which posts to the existing POST /applications endpoint.
@@ -113,7 +126,11 @@ const Assistant = () => {
                   <span className="assistant-msg-who">
                     {message.role === "user" ? "You" : "Assistant"}
                   </span>
-                  <div className="assistant-msg-body">{message.content}</div>
+                  <div className="assistant-msg-body">
+                    {message.role === "assistant"
+                      ? renderText(message.content)
+                      : message.content}
+                  </div>
                 </div>
               ))
             )}
