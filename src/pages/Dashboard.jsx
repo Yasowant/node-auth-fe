@@ -1,8 +1,9 @@
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import AccountMenu from "../components/AccountMenu";
 import AppHeader from "../components/AppHeader";
 import JobBrowser from "../components/JobBrowser";
+import { SparkIcon } from "../components/icons";
 import { useAuth } from "../hooks/useAuth";
 import NotificationBell from "../components/NotificationBell";
 import ThemeToggle from "../components/ThemeToggle";
@@ -47,6 +48,10 @@ const Dashboard = () => {
             ) : null}
 
             <span className="tag">{user.role}</span>
+
+            <Link className="btn btn-primary btn-sm" to="/assistant">
+              <SparkIcon /> Ask AI assistant
+            </Link>
           </div>
         </div>
 

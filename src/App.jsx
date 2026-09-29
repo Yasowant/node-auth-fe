@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import Register from "./pages/Register";
 import Applications from "./pages/Applications";
+import Assistant from "./pages/Assistant";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/applications" element={<Applications />} />
+            <Route path="/assistant" element={<Assistant />} />
 
             {/* Admins get the user directory; everyone else is sent back. */}
             <Route element={<AdminRoute />}>

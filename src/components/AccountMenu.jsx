@@ -8,6 +8,7 @@ import {
   CloseIcon,
   LockIcon,
   LogOutIcon,
+  SparkIcon,
   UserIcon,
 } from "./icons";
 import { useAuth } from "../hooks/useAuth";
@@ -20,6 +21,7 @@ const CANDIDATE_LINKS = [
   { to: "/profile", label: "View and update profile", icon: <UserIcon /> },
   { label: "Saved jobs", icon: <BookmarkIcon />, soon: true },
   { to: "/applications", label: "My applications", icon: <BriefcaseIcon /> },
+  { to: "/assistant", label: "AI job assistant", icon: <SparkIcon /> },
   { label: "Change password", icon: <LockIcon />, soon: true },
 ];
 
